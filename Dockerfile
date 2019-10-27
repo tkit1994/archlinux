@@ -1,11 +1,9 @@
 FROM archlinux:latest
 USER root
 RUN sed -i '/China/!{n;/Server/s/^/#/};t;n' /etc/pacman.d/mirrorlist &&\
-    pacman-key --init && \
-    pacman -Syy &&\
     echo '[archlinuxcn]' >> /etc/pacman.conf &&\
     echo 'Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch' >> /etc/pacman.conf && \
-    pacman -Syy &&\
+    pacman -Syu &&\
     pacman -S --noconfirm archlinuxcn-keyring  && \
     pacman -S --noconfirm base-devel cmake git zsh oh-my-zsh-git yay vim pkgfile fontconfig xorg-mkfontscale&& \
     pacman -S --noconfirm wget && \
