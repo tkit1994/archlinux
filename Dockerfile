@@ -3,6 +3,8 @@ USER root
 RUN sed -i '/China/!{n;/Server/s/^/#/};t;n' /etc/pacman.d/mirrorlist &&\
     echo '[archlinuxcn]' >> /etc/pacman.conf &&\
     echo 'Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch' >> /etc/pacman.conf && \
+    pacman-key --init && \
+    pacman-key --populate archlinux && \
     pacman -Syu --noconfirm &&\
     pacman -S --noconfirm archlinuxcn-keyring  && \
     pacman -S --noconfirm base-devel cmake git zsh oh-my-zsh-git yay vim pkgfile fontconfig xorg-mkfontscale&& \
