@@ -1,4 +1,4 @@
-FROM archlinux/base:latest
+FROM archlinux:latest
 USER root
 RUN sed -i '/China/!{n;/Server/s/^/#/};t;n' /etc/pacman.d/mirrorlist &&\
     pacman-key --init && \
