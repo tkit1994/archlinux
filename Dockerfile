@@ -19,6 +19,7 @@ WORKDIR /home/tkit
 
 RUN curl -sLf https://spacevim.org/cn/install.sh | bash
 
-RUN cp /usr/share/oh-my-zsh/zshrc ~/.zshrc
-CMD [ "zsh" ]
+RUN cp /usr/share/oh-my-zsh/zshrc ~/.zshrc && \
+     sed -i '1i ZSH_DISABLE_COMPFIX=true' ~/.zshrc
+CMD [ "/usr/bin/zsh" ]
 
