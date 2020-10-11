@@ -7,7 +7,7 @@ RUN sed -i '/China/!{n;/Server/s/^/#/};t;n' /etc/pacman.d/mirrorlist &&\
     pacman-key --populate archlinux && \
     pacman -Syu --noconfirm &&\
     pacman -S --noconfirm archlinuxcn-keyring  && \
-    pacman -S --noconfirm base-devel cmake git zsh oh-my-zsh-git yay vim pkgfile fontconfig xorg-mkfontscale&& \
+    pacman -S --noconfirm base-devel cmake git zsh yay vim pkgfile fontconfig xorg-mkfontscale&& \
     pacman -S --noconfirm wget && \
     pacman -Scc --noconfirm
 
@@ -19,7 +19,7 @@ WORKDIR /home/tkit
 
 RUN curl -sLf https://spacevim.org/cn/install.sh | bash
 
-RUN cp /usr/share/oh-my-zsh/zshrc ~/.zshrc && \
-     sed -i '1i ZSH_DISABLE_COMPFIX=true' ~/.zshrc
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
+    sed -i '1i ZSH_DISABLE_COMPFIX=true' ~/.zshrc
 CMD [ "/usr/bin/zsh" ]
 
