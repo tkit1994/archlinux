@@ -3,6 +3,7 @@ USER root
 RUN sed -i '/China/!{n;/Server/s/^/#/};t;n' /etc/pacman.d/mirrorlist &&\
     echo '[archlinuxcn]' >> /etc/pacman.conf &&\
     echo 'Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch' >> /etc/pacman.conf
+RUN ls /etc/*
 RUN pacman-key --init && \
     pacman-key --populate archlinux && \
     pacman -Syu --noconfirm &&\
